@@ -1,4 +1,6 @@
-local SupportedGames = {
-  [128142780900340] = "Ink Game Practice",
-  [72212564918217] = "Steal a Fish"
+return {
+  SupportedGames = {
+    [128142780900340] = "Ink Game Practice",
+    [72212564918217] = "Steal a Fish"
+  }
 }
