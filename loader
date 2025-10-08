@@ -1,0 +1,149 @@
+local G2L = {};
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["Name"] = [[coolgui]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1"]["ResetOnSpawn"] = false;
+G2L["2"] = Instance.new("LocalScript", G2L["1"]);
+G2L["2"]["Name"] = [[Manager]];
+G2L["3"] = Instance.new("Frame", G2L["1"]);
+G2L["3"]["Active"] = true;
+G2L["3"]["BorderSizePixel"] = 0;
+G2L["3"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["3"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["3"]["Size"] = UDim2.new(0.3, 0, 0.4, 0);
+G2L["3"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
+G2L["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["4"] = Instance.new("UICorner", G2L["3"]);
+G2L["4"]["CornerRadius"] = UDim.new(0.05, 0);
+G2L["5"] = Instance.new("UIStroke", G2L["3"]);
+G2L["5"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+G2L["5"]["Thickness"] = 5;
+G2L["6"] = Instance.new("TextLabel", G2L["3"]);
+G2L["6"]["TextWrapped"] = true;
+G2L["6"]["BorderSizePixel"] = 0;
+G2L["6"]["TextSize"] = 14;
+G2L["6"]["TextScaled"] = true;
+G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["6"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6"]["BackgroundTransparency"] = 1;
+G2L["6"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["6"]["Size"] = UDim2.new(1, 0, 0.1, 0);
+G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6"]["Text"] = [[Linor]];
+G2L["6"]["Name"] = [[Title]];
+G2L["6"]["Position"] = UDim2.new(0.5, 0, 0.2, 0);
+G2L["7"] = Instance.new("UIStroke", G2L["6"]);
+G2L["8"] = Instance.new("TextLabel", G2L["3"]);
+G2L["8"]["TextWrapped"] = true;
+G2L["8"]["BorderSizePixel"] = 0;
+G2L["8"]["TextSize"] = 14;
+G2L["8"]["TextScaled"] = true;
+G2L["8"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["BackgroundTransparency"] = 1;
+G2L["8"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["8"]["Size"] = UDim2.new(1, 0, 0.1, 0);
+G2L["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["8"]["Text"] = [[game name]];
+G2L["8"]["Name"] = [[Game]];
+G2L["8"]["Position"] = UDim2.new(0.5, 0, 0.4, 0);
+G2L["9"] = Instance.new("UIStroke", G2L["8"]);
+G2L["a"] = Instance.new("TextLabel", G2L["3"]);
+G2L["a"]["TextWrapped"] = true;
+G2L["a"]["BorderSizePixel"] = 0;
+G2L["a"]["TextSize"] = 14;
+G2L["a"]["TextScaled"] = true;
+G2L["a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["a"]["BackgroundTransparency"] = 1;
+G2L["a"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["a"]["Size"] = UDim2.new(1, 0, 0.1, 0);
+G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["a"]["Text"] = [[Loading (stuff)...]];
+G2L["a"]["Name"] = [[Loading]];
+G2L["a"]["Position"] = UDim2.new(0.5, 0, 0.6, 0);
+G2L["b"] = Instance.new("UIStroke", G2L["a"]);
+G2L["c"] = Instance.new("TextLabel", G2L["3"]);
+G2L["c"]["TextWrapped"] = true;
+G2L["c"]["BorderSizePixel"] = 0;
+G2L["c"]["TextSize"] = 14;
+G2L["c"]["TextScaled"] = true;
+G2L["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["c"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["c"]["BackgroundTransparency"] = 1;
+G2L["c"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["c"]["Size"] = UDim2.new(1, 0, 0.1, 0);
+G2L["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["c"]["Text"] = [[/100% ( ?/?)]];
+G2L["c"]["Name"] = [[LoadPercentage]];
+G2L["c"]["Position"] = UDim2.new(0.5, 0, 0.8, 0);
+G2L["d"] = Instance.new("UIStroke", G2L["c"]);
+G2L["e"] = Instance.new("UIDragDetector", G2L["3"]);
+G2L["e"]["SelectionModeDragSpeed"] = UDim2.new(0.01, 0, 0.01, 0);
+local function C_2()
+local script = G2L["2"];
+	local LocalPlayer = game:GetService('Players').LocalPlayer
+	local SupportedGames = {
+		[128142780900340] = "Ink Game Practice",
+		[72212564918217] = "Steal a Fish"
+	}
+	local function GetGameID()
+		local PlaceID = game.PlaceId
+		local PlaceIDs = {
+			[72212564918217] = "Steal a Fish",
+			[128142780900340] = "Ink Game Practice"
+		}
+		local Game = PlaceIDs[PlaceID]
+		if not Game then Game = nil end
+		return PlaceID, Game
+	end
+	local function LoadMainGui()
+		local PlaceID, Game = GetGameID()
+		if Game == nil then
+			error("Linor: Unsupported game, if this is a supported game please report this bug.")
+		elseif Game == "Steal a Fish" then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/LinoTheLoserSX/Linor/refs/heads/main/stealafish"))()
+		elseif Game == "Ink Game Practice" then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/LinoTheLoserSX/Linor/refs/heads/main/inkgamepractice"))()
+		end
+		script.Parent:Destroy()
+	end
+	local function LoadLoaderGui()
+		local function SetLoadingLabel(loading)
+			script.Parent:FindFirstChild('Frame'):FindFirstChild('Loading').Text = "Loading " .. loading
+		end	
+		local ContentProvider = game:GetService('ContentProvider')
+		for i,v in pairs(script.Parent:GetDescendants()) do
+			SetLoadingLabel(v.Name)
+			script.Parent:FindFirstChild('Frame'):FindFirstChild('LoadPercentage').Text = math.ceil((#script.Parent:GetDescendants() / i ) * 100) .. "% | " .. i .. "/" .. #script.Parent:GetDescendants() 
+			ContentProvider:PreloadAsync({v})
+			task.wait(0.2)
+			if i == #script.Parent:GetDescendants() then
+				ContentProvider:PreloadAsync({script.Parent})
+				script.Parent:FindFirstChild('Frame'):FindFirstChild('Loading').Text = "Loading complete!"
+				task.wait(2)
+			end
+		end
+		LoadMainGui()
+	end
+	local function SetGameLabel()
+		local function GetGame()
+			local _, Game = GetGameID()
+			if Game == nil then
+				script.Parent:FindFirstChild('Frame'):FindFirstChild('Game').Text = "Unsupported game."
+				error("Linor: Unsupported game, if this is a supported game please report this bug.")
+			else
+				return Game
+			end
+		end
+		script.Parent:FindFirstChild('Frame'):FindFirstChild('Game').Text = GetGame()
+	end
+	SetGameLabel()
+	LoadLoaderGui()
+end;
+task.spawn(C_2);
+return G2L["1"], require;
