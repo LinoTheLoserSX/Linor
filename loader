@@ -16,8 +16,8 @@ G2L["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["4"] = Instance.new("UICorner", G2L["3"]);
 G2L["4"]["CornerRadius"] = UDim.new(0.05, 0);
 G2L["5"] = Instance.new("UIStroke", G2L["3"]);
-G2L["5"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 G2L["5"]["Thickness"] = 5;
+G2L["5"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 G2L["6"] = Instance.new("TextLabel", G2L["3"]);
 G2L["6"]["TextWrapped"] = true;
 G2L["6"]["BorderSizePixel"] = 0;
@@ -92,18 +92,21 @@ local script = G2L["2"];
 		[72212564918217] = "Steal a Fish"
 	}
 	local function GetGameID()
-		local PlaceID = game.PlaceId
-		local PlaceIDs = {
-			[72212564918217] = "Steal a Fish",
+		local GameID = game.GameId
+		local UniverseIDs = {
+			[7907828295] = "Steal a Fish",
+			[8479935605] = "Ink Game Practice"
+		}
+		local GameIDs = {
+			[1] = "Steal a Fish",
 			[128142780900340] = "Ink Game Practice"
 		}
-		local Game = PlaceIDs[PlaceID]
-		if not Game then Game = nil end
-		return PlaceID, Game
+		local Game = GameIDs[GameID] or UniverseIDs[GameID] or nil
+		return  Game
 	end
 	local function LoadMainGui()
-		local PlaceID, Game = GetGameID()
-		if Game == nil then
+		local Game = GetGameID()
+		if Game == nil or Game == 0 then
 			error("Linor: Unsupported game, if this is a supported game please report this bug.")
 		elseif Game == "Steal a Fish" then
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/LinoTheLoserSX/Linor/refs/heads/main/stealafish"))()
@@ -112,6 +115,30 @@ local script = G2L["2"];
 		end
 		script.Parent:Destroy()
 	end
+	local function WhatEverything(what)
+		script.Parent.Enabled = true
+		for i,v in pairs(script.Parent:GetDescendants()) do
+			if v:IsA('Frame') or v:IsA('ScrollingFrame') or v:IsA('TextLabel') or v:IsA('ImageLabel') or v:IsA('TextButton') or v:IsA('ImageButton') then
+				if what then
+					if v:IsA('TextLabel') or v:IsA('TextButton') then
+						v.TextTransparency = 0
+					elseif v:IsA('ImageLabel') or v:IsA('ImageButton') then
+						v.ImageTransparency = 0
+					end
+				elseif what == false then
+					if v:IsA('Frame') or v:IsA('ScrollingFrame') then
+						v.BackgroundTransparency = 1
+					elseif v:IsA('TextLabel') or v:IsA('TextButton') then
+						v.TextTransparency = 1
+						v.BackgroundTransparency = 1
+					elseif v:IsA('ImageLabel') or v:IsA('ImageButton') then
+						v.ImageTransparency = 1
+						v.BackgroundTransparency = 1 
+					end
+				end
+			end
+		end
+	end
 	local function LoadLoaderGui()
 		local function SetLoadingLabel(loading)
 			script.Parent:FindFirstChild('Frame'):FindFirstChild('Loading').Text = "Loading " .. loading
@@ -119,31 +146,68 @@ local script = G2L["2"];
 		local ContentProvider = game:GetService('ContentProvider')
 		for i,v in pairs(script.Parent:GetDescendants()) do
 			SetLoadingLabel(v.Name)
-			script.Parent:FindFirstChild('Frame'):FindFirstChild('LoadPercentage').Text = math.ceil((#script.Parent:GetDescendants() / i ) * 100) .. "% | " .. i .. "/" .. #script.Parent:GetDescendants() 
+			script.Parent:FindFirstChild('Frame'):FindFirstChild('LoadPercentage').Text = math.ceil(( i / #script.Parent:GetDescendants() ) * 100) .. "% | " .. i .. "/" .. #script.Parent:GetDescendants()
+			if v:IsA('Frame') or v:IsA('ScrollingFrame') or v:IsA('TextLabel') or v:IsA('ImageLabel') or v:IsA('TextButton') or v:IsA('ImageButton') then
 			ContentProvider:PreloadAsync({v})
+			end
 			task.wait(0.2)
 			if i == #script.Parent:GetDescendants() then
 				ContentProvider:PreloadAsync({script.Parent})
+				task.wait(0.5)
 				script.Parent:FindFirstChild('Frame'):FindFirstChild('Loading').Text = "Loading complete!"
 				task.wait(2)
+				local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+				for ind, var in pairs(script.Parent:GetDescendants()) do
+					if var:IsA('Frame') or var:IsA('ScrollingFrame') then
+						local tween = game:GetService('TweenService'):Create(var, tweenInfo, {BackgroundTransparency = 1})
+						tween:Play()
+					elseif var:IsA('TextLabel') or var:IsA('TextButton') then
+						local tween = game:GetService('TweenService'):Create(var, tweenInfo, {TextTransparency = 1})
+						tween:Play()
+					elseif var:IsA('ImageLabel') or var:IsA('ImageButton') then
+						local tween = game:GetService('TweenService'):Create(var, tweenInfo, {ImageTransparency = 1})
+						tween:Play()
+					end
+					if ind == #script.Parent:GetDescendants() then
+						for index, variable in pairs(script.Parent:GetDescendants()) do
+							if variable:IsA('Frame') or variable:IsA('ScrollingFrame') or variable:IsA('TextLabel') or variable:IsA('ImageLabel') or variable:IsA('TextButton') or variable:IsA('ImageButton') then
+								variable:Destroy()
+							end
+						end
+					end
+				end
 			end
 		end
 		LoadMainGui()
 	end
+	local function AppearLoaderGui()
+		local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		for i,v in pairs(script.Parent:GetDescendants()) do
+			if v:IsA('Frame') or v:IsA('ScrollingFrame') then
+				game:GetService('TweenService'):Create(v, tweenInfo, {BackgroundTransparency = 0}):Play()
+			elseif v:IsA('TextLabel') or v:IsA('TextButton') then
+				game:GetService('TweenService'):Create(v, tweenInfo, {TextTransparency = 0}):Play()
+			elseif v:IsA('ImageLabel') or v:IsA('ImageButton') then
+				game:GetService('TweenService'):Create(v, tweenInfo, {ImageTransparency = 0}):Play()
+			end
+		end
+			task.wait(3)
+			LoadLoaderGui()
+	end
 	local function SetGameLabel()
 		local function GetGame()
-			local _, Game = GetGameID()
+			local Game = GetGameID()
 			if Game == nil then
 				script.Parent:FindFirstChild('Frame'):FindFirstChild('Game').Text = "Unsupported game."
 				error("Linor: Unsupported game, if this is a supported game please report this bug.")
-			else
-				return Game
-			end
+			else return Game end
 		end
 		script.Parent:FindFirstChild('Frame'):FindFirstChild('Game').Text = GetGame()
 	end
 	SetGameLabel()
-	LoadLoaderGui()
+	WhatEverything(false)
+	AppearLoaderGui()
 end;
 task.spawn(C_2);
+
 return G2L["1"], require;
