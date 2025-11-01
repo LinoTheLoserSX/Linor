@@ -1,1 +1,48 @@
-print('skibidiboppy')
+local Foods = {}
+for i,v in pairs(game:GetService('ReplicatedStorage'):FindFirstChild('Food'):GetChildren()) do
+    table.insert(Foods, v.Name)
+end
+
+local UseRemote = game:GetService("ReplicatedStorage"):WaitForChild("EatFood")
+
+local StartRemote = game:GetService("ReplicatedStorage"):WaitForChild("StartPoopMinigameServer")
+local FinishRemote = game:GetService("ReplicatedStorage"):WaitForChild("PoopSuccessEvent")
+
+local SellRemote = game:GetService("ReplicatedStorage"):WaitForChild("SellBrainrotRequest")
+
+local function BuyAll()
+    for _,v in pairs(workspace:GetChildren()) do 
+        if v:IsA('Model') then
+            if table.find(Foods, v.Name) then
+            local proximityprompt = v:FindFirstChild("root"):FindFirstChild("ProximityPrompt")
+            if proximityprompt then
+            fireproximityprompt(proximityprompt)
+            end
+            end
+        end
+    end
+end
+
+local function UseAll()
+    local Backpack = game:GetService('Players').LocalPlayer.Backpack
+    for i,v in pairs(Backpack:GetChildren()) do
+        UseRemote:FireServer(v.Name)
+    end
+end
+
+local function InstantPoop()
+    StartRemote:FireServer()
+    FinishRemote:FireServer()
+end
+
+local function SellAll()
+    SellRemote:InvokeServer('all')
+end
+
+while true do 
+    BuyAll()
+    InstantPoop()
+    game:GetService("RunService").Heartbeat:Wait()
+    UseAll()
+    SellAll()
+end
